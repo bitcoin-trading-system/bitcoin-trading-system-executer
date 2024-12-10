@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  bitflyer-api:
+    build:
+      context: ../bitflyer-api
+    command: ./main -conf=conf/docker.toml
+    ports:
+      - "7001:7001"
+
+  admin-panel:
+    build:
+      context: ../admin-panel
+    command: sh -c "npm run start"
+    ports:
+      - "30000:30000"
+    depends_on:
+      - bitflyer-api
