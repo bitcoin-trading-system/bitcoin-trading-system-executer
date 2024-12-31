@@ -7,6 +7,12 @@ services:
     command: ./main -conf=conf/docker.toml
     ports:
       - "7001:7001"
+  bitcoin-slack-notification:
+    build:
+      context: ../bitcoin-slack-notification
+    command: ./main -toml=toml/docker.toml -env=env/.env.docker
+    ports:
+      - "7002:7002"
 
   admin-panel:
     build:
